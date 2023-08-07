@@ -1,0 +1,53 @@
+process.env.TZ = "Europe/Belfast";
+
+date an time:
+
+var d = new Date();
+console.log(d.toLocaleTimeString()); this one just time hh/mm/ss
+console.log(d.toLocaleDateString());this one just ate dd/mm/yyyy
+console.log(d.toString()); example: Thu Sep 01 2022 11:10:03 GMT+0100 (British Summer Time)
+console.log(d.toLocaleString()); example 01/09/2022, 11:10:03
+
+////////////////////////////////////
+time stamp local working:
+process.env.TZ = 'Europe/Belfast';
+function localdate(){
+var date = new Date(); // Or the date you'd like converted.
+var isoDateTime = new Date(date.getTime() - (date.getTimezoneOffset() * 60000)).toISOString();
+console.log(isoDateTime)
+}
+////////////////////////////////////
+ip address
+var ip = require("ip");
+console.dir ( ip.address() );
+////////////////////////////////////
+example how to get a json array and object getting the las element 
+
+const dbResults = await DBschema.find();
+var lastValue = dbResults[0].device.data.value.slice(-1);
+console.log(lastValue[0]);
+var JsonObject =   {"location": sensors.device.location,
+                                "setpoint": sensors.device.setpoint,
+                                "unit": sensors.device.unit,
+                                "value": sensors.device.data.value.slice(-1)[0],  //last item
+                                "updated": sensors.device.data.updated.slice(-1)[0], //last item
+                                "highAlarm": sensors.device.highAlarm,
+                                "lowAlarm": sensors.device.lowAlarm,
+                                "alarmActive": sensors.device.alarmActive}
+
+//////////////////////////////////////////////////////////////
+query Id 
+const dbResults = await DBschema.find({},{_id:1});
+//////////////////////////////////////////////////////
+add a delay inside an async function
+const delay = (milliseconds) => new Promise((resolve) => setTimeout(resolve, milliseconds));
+
+await delay(5000);
+//////////////////////////////////////////////////////////////////////////////
+if(isNaN(tankVolume19) == true){
+            console.log('this is NaN');
+        }
+
+/////////////////////////////////////////////////////////////////////////////////
+
+throw new Error('error at boolean check')
