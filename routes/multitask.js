@@ -121,7 +121,7 @@ router.post('/create', validateApiKey, async (req, res) => {
 
 
 
-//////////////////////////Universal Update route DONE WORKING
+////////////////////////// RM-BOX-UPDATE route DONE WORKING
 
 router.post('/RM-BOX-UPDATE', async (req, res) => {
 
@@ -134,7 +134,7 @@ router.post('/RM-BOX-UPDATE', async (req, res) => {
   let analogInput3 = req.body.analogInput3;
   let input1 = req.body.input1;
   let input2 = req.body.input2;
-  let assetError = false;
+ 
 
 //DATA INCOMING AND SAVED TO DB
   //ID VALIDATING
@@ -274,7 +274,264 @@ throw new Error ('ERROR ID INVALID')
   
   }); 
 
-//////////////update ends
+///////////////////////// RM-BOX-UPDATE ends
+
+
+
+//  FORM ROUTE
+
+router.post('/FORM-RM-BOX-UPDATE', async (req, res) => {
+
+try{
+
+  idPost = req.body.id;
+  var namePosted = req.body.name;
+  var locationPosted = req.body.location;
+  var datasheetPosted = req.body.datasheet;
+  var analogInputName1Posted = req.body.analogInputName1;
+  var analogInputName2Posted = req.body.analogInputName2;
+  var analogInputName3Posted = req.body.analogInputName3;
+  var inputName1Posted = req.body.inputName1;
+  var inputName2Posted = req.body.inputName2;
+  var outputName1Posted = req.body.outputName1;
+  var outputName2Posted = req.body.outputName2;
+  var output1Posted = req.body.output1;
+  var output2Posted = req.body.output2;
+
+              //VALIDATING
+    //ID 
+    const exists = await Dbschema.exists({ _id: idPost});
+    if (idPost === undefined || idPost.length !== 24){ // VALIDATING ID
+  throw new Error ('ERROR ID INVALID')
+    }  
+    if(!exists){
+    throw new Error ('ERROR ID NOT FOUND')
+    }
+  
+    //NAME
+    if (namePosted !== undefined){
+    if(typeof namePosted === 'string' && namePosted.length <= 40){
+      try{
+        const namePostedInsert = await Dbschema.updateOne({_id: idPost}, {$set:{"Asset.name": namePosted}});
+        if (namePostedInsert.acknowledged == false){
+          throw new Error(`Error inserting data to DB at ${namePosted} with the ID ${idPost}`) 
+        }
+      }
+      catch(err){
+      throw new Error(`Error inserting data to DB at ${namePosted} with the ID ${idPost}`) }  
+
+    }else{ throw new Error (`The Name is not a string or longer than 40 charc. => ${namePosted}`)}
+}
+
+  //LOCATION
+  if (locationPosted !== undefined){
+    if(typeof locationPosted === 'string' && locationPosted.length <= 39){
+      try{
+        const locationPostedInsert = await Dbschema.updateOne({_id: idPost}, {$set:{"Asset.location": locationPosted}});
+        if (locationPostedInsert.acknowledged == false){
+          throw new Error(`Error inserting data to DB at ${locationPosted} with the ID ${idPost}`) 
+        }
+      }
+      catch(err){
+      throw new Error(`Error inserting data to DB at ${locationPosted} with the ID ${idPost}`) }  
+
+    }else{ throw new Error (`The Name is not a string or longer than 40 charc. => ${locationPosted}`)}
+  }
+
+
+    //DATASHEET
+    if (datasheetPosted !== undefined){
+      if(typeof datasheetPosted === 'string'){
+        try{
+          const datasheetPostedInsert = await Dbschema.updateOne({_id: idPost}, {$set:{"Asset.datasheet": datasheetPosted}});
+          if (datasheetPostedInsert.acknowledged == false){
+            throw new Error(`Error inserting data to DB at ${datasheetPosted} with the ID ${idPost}`) 
+          }
+        }
+        catch(err){
+        throw new Error(`Error inserting data to DB at ${datasheetPosted} with the ID ${idPost}`) }  
+  
+      }else{ throw new Error (`The Name is not a string => ${datasheetPosted}`)}
+    }
+    
+
+
+    //ANALOG INPUT NAME 1
+    if (analogInputName1Posted !== undefined){
+      if(typeof analogInputName1Posted === 'string' && analogInputName1Posted.length <= 30){
+        try{
+          const analogInputName1PostedInsert = await Dbschema.updateOne({_id: idPost}, {$set:{"Asset.analogInputName1": analogInputName1Posted}});
+          if (analogInputName1PostedInsert.acknowledged == false){
+            throw new Error(`Error inserting data to DB at ${analogInputName1Posted} with the ID ${idPost}`) 
+          }
+        }
+        catch(err){
+        throw new Error(`Error inserting data to DB at ${analogInputName1Posted} with the ID ${idPost}`) }  
+  
+      }else{ throw new Error (`The Name is not a string => ${analogInputName1Posted} or length <= 30`)}
+    }
+
+
+    //ANALOG INPUT NAME 2
+    if (analogInputName2Posted !== undefined){
+      if(typeof analogInputName2Posted === 'string' && analogInputName2Posted.length <= 30){
+        try{
+          const analogInputName2PostedInsert = await Dbschema.updateOne({_id: idPost}, {$set:{"Asset.analogInputName2": analogInputName2Posted}});
+          if (analogInputName2PostedInsert.acknowledged == false){
+            throw new Error(`Error inserting data to DB at ${analogInputName2Posted} with the ID ${idPost}`) 
+          }
+        }
+        catch(err){
+        throw new Error(`Error inserting data to DB at ${analogInputName2Posted} with the ID ${idPost}`) }  
+  
+      }else{ throw new Error (`The Name is not a string => ${analogInputName2Posted} or length <= 30`)}
+    }
+
+
+    //ANALOG INPUT NAME 3
+    if (analogInputName3Posted !== undefined){
+      if(typeof analogInputName3Posted === 'string' && analogInputName3Posted.length <= 30){
+        try{
+          const analogInputName3PostedInsert = await Dbschema.updateOne({_id: idPost}, {$set:{"Asset.analogInputName3": analogInputName3Posted}});
+          if (analogInputName3PostedInsert.acknowledged == false){
+            throw new Error(`Error inserting data to DB at ${analogInputName3Posted} with the ID ${idPost}`) 
+          }
+        }
+        catch(err){
+        throw new Error(`Error inserting data to DB at ${analogInputName3Posted} with the ID ${idPost}`) }  
+  
+      }else{ throw new Error (`The Name is not a string => ${analogInputName3Posted} or length <= 30`)}
+    }
+
+
+
+    // inputName 1
+    if (inputName1Posted !== undefined){
+      if(typeof inputName1Posted === 'string' && inputName1Posted.length <= 30){
+        try{
+          const inputName1PostedInsert = await Dbschema.updateOne({_id: idPost}, {$set:{"Asset.analogInput1": inputName1Posted}});
+          if (inputName1PostedInsert.acknowledged == false){
+            throw new Error(`Error inserting data to DB at ${inputName1Posted} with the ID ${idPost}`) 
+          }
+        }
+        catch(err){
+        throw new Error(`Error inserting data to DB at ${inputName1Posted} with the ID ${idPost}`) }  
+  
+      }else{ throw new Error (`The Name is not a string => ${inputName1Posted} or length <= 30`)}
+    }
+
+
+    // inputName 1
+    if (inputName2Posted !== undefined){
+      if(typeof inputName2Posted === 'string' && inputName2Posted.length <= 30){
+        try{
+          const inputName2PostedInsert = await Dbschema.updateOne({_id: idPost}, {$set:{"Asset.analogInput2": inputName2Posted}});
+          if (inputName2PostedInsert.acknowledged == false){
+            throw new Error(`Error inserting data to DB at ${inputName2Posted} with the ID ${idPost}`) 
+          }
+        }
+        catch(err){
+        throw new Error(`Error inserting data to DB at ${inputName2Posted} with the ID ${idPost}`) }  
+  
+      }else{ throw new Error (`The Name is not a string => ${inputName2Posted} or length <= 30`)}
+    }
+
+
+    // outputName1
+    if (outputName1Posted !== undefined){
+      if(typeof outputName1Posted === 'string' && outputName1Posted.length <= 30){
+
+        try{
+          const outputName1PostedInsert = await Dbschema.updateOne({_id: idPost}, {$set:{"Asset.outputName1": outputName1Posted}});
+
+          if (outputName1PostedInsert.acknowledged == false){
+            throw new Error(`Error inserting data to DB at ${outputName1Posted} with the ID ${idPost}`) 
+          }
+        }catch(err){
+        throw new Error(`Error inserting data to DB at ${outputName1Posted} with the ID ${idPost}`) }  
+  
+      }else{ throw new Error (`The Name is not a string => ${outputName1Posted} or length <= 30`)}
+    }
+
+
+
+  
+    // OUTPUT1
+    if(output1Posted !== undefined){
+      if(output1Posted instanceof Boolean || typeof output1Posted === 'boolean'){
+        try{
+          localdate();
+          const output1PostedInsert = await Dbschema.updateOne({_id: idPost}, 
+          {$push:{"Asset.output1.output": output1Posted, "Asset.output1.updated": isoDateTime}})
+
+          if (output1PostedInsert.acknowledged == false){
+            throw new Error(`Error inserting data to DB at output1Posted = ${output1Posted} with the ID ${idPost}`) 
+          }
+
+        }catch(err){
+          throw new Error(`Error inserting data to DB at output1Posted ${output1Posted} with the ID ${idPost}`) }  
+    
+        }else{ throw new Error (`The output is not a Boolean => ${output1Posted}`)}
+      }
+
+
+
+    // outputName2
+    if (outputName2Posted !== undefined){
+      if(typeof outputName2Posted === 'string' && outputName2Posted.length <= 30){
+        try{
+          const outputName2PostedInsert = await Dbschema.updateOne({_id: idPost}, {$set:{"Asset.outputName2": outputName2Posted}});
+          if (outputName2PostedInsert.acknowledged == false){
+            throw new Error(`Error inserting data to DB at ${outputName2Posted} with the ID ${idPost}`) 
+          }
+        }
+        catch(err){
+        throw new Error(`Error inserting data to DB at ${outputName2Posted} with the ID ${idPost}`) }  
+  
+      }else{ throw new Error (`The Name is not a string => ${outputName2Posted} or length <= 30`)}
+    }
+
+
+
+    // OUTPUT2
+    if(output2Posted !== undefined){
+      if(output2Posted instanceof Boolean || typeof output2Posted === 'boolean'){
+        try{
+          localdate();
+          const output2PostedInsert = await Dbschema.updateOne({_id: idPost}, 
+          {$push:{"Asset.output2.output": output2Posted, "Asset.output2.updated": isoDateTime}})
+
+          if (output2PostedInsert.acknowledged == false){
+            throw new Error(`Error inserting data to DB at output2Posted = ${output2Posted} with the ID ${idPost}`) 
+          }
+
+        }catch(err){
+          throw new Error(`Error inserting data to DB at output2Posted ${output2Posted} with the ID ${idPost}`) }  
+    
+        }else{ throw new Error (`The output is not a Boolean => ${output2Posted}`)}
+      }
+
+
+
+      
+  res.status(200).json(req.body);
+  await Dbschema.updateOne({_id: idPost}, {$set:{"Asset.errors": false}});  
+}
+catch(Error) {//FIRST CATCH
+  console.error(`Error handling POST From Update Form request: => ${Error}`);
+  res.status(500).send(`Error handling POST From Update Form request: => ${Error}`); 
+
+  try {
+    await Dbschema.updateOne({_id: idPost}, {$set:{"Asset.errors": true}});
+  } catch (error) {
+    //email to notify error on db
+    console.log("error updating error to db")
+  }
+  
+
+}
+
+})
 
 
 
@@ -310,66 +567,8 @@ catch(error) {
 
 });
 
-//update from our form  
-router.post('/appAndroid', async (req, res) => {
-
-  try{
-  console.log(req.body);
-  //res.end();
-  res.status(200).send('OK');
-  }
-  catch(error) {
-    console.error('Error handling POST request:', error);
-    res.status(500).send('Internal Server Error');
-  }
-  
-  }); 
 
 
-  
-/*
-//get one
-router.get('/:id', getSensors, (req, res) => {
-    res.json(res.sensors);
-  
-});
-
-//get one with filters
-router.get('/filter/:id', getSensors, (req, res) => {
- var setpoint = res.sensors.device.setpoint;
- var output = res.sensors.device.output;
- var alarmActive = res.sensors.device.alarmActive;
- var bundle = {setpoint,
-                output,
-                alarmActive}
- res.json(bundle);
- 
-
-    
-  //let lastDate = dataDate[dataDate.length - 1];
-
-  //console.log(lastDate);
-
-});*/
-
-
-
-
-
-  async function getSensors(req, res, next) {
-    let sensors
-    try {
-      sensors = await Dbschema.findById(req.params.id)
-      if (sensors == null) {
-        return res.status(404).json({ message: 'Cannot find this ID' })
-      }
-    } catch (err) {
-      return res.status(500).json({ message: err.message })
-    }
-  
-    res.sensors = sensors
-    next()
-  }
 
  
  
