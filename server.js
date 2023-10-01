@@ -92,6 +92,6 @@ const transporter = nodemailer.createTransport({
 }
 
 
-    connectDB();
+  //  connectDB();
 
     setInterval(scheduledFunction, intervalTime);
