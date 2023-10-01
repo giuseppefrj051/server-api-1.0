@@ -47,7 +47,7 @@ const transporter = nodemailer.createTransport({
   const delay = (milliseconds) => new Promise((resolve) => setTimeout(resolve, milliseconds));
   
   function listening() {
-      console.log(`Server Live at ${ipVar}:${port}`);
+      console.log(`Server Live at ${ipVar}:${port} not connected to Db`);
       //assetsReading();
   }
 
@@ -58,7 +58,7 @@ const transporter = nodemailer.createTransport({
   }
 
 
-  const connectDB = async () => {
+ /* const connectDB = async () => {
       try {
           mongoose.set('strictQuery', false);
           mongoose.connect(process.env.MONGODB_URI);
@@ -69,7 +69,7 @@ const transporter = nodemailer.createTransport({
           process.exit();
       }      
   }
-  
+  */
 
   async function scheduledFunction(){
     date = new Date();
