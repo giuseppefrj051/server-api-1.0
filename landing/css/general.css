@@ -1,3 +1,37 @@
+body{
+  background: #2B2B2B !important;
+}
+.h1style {
+    font-family: 'Archivo Black', sans-serif;
+    color: white;
+    font-size: 2.5vw;
+    text-shadow: 0 0 20px green, 0 0 20px black !important;
+}
+.h2style {
+    font-family: 'Archivo Black', sans-serif;
+    color: white;
+    font-size: 1.5vw;
+}
+
+.h3style {
+    font-family: 'Archivo Black', sans-serif;
+    color: white;
+    font-size: 1.5vw;
+    text-align: justify;
+    
+}
+
+.carouh3{
+    font-family: 'Archivo Black', sans-serif;
+    color: black;
+    font-size: 5vw;
+}
+.carouSpam{
+    font-family: 'Archivo Black', sans-serif;
+
+    color: green;
+    font-size: 2vw;
+}
 
     .logoPart1{
         font-family: 'Archivo Black', sans-serif;
@@ -14,21 +48,49 @@
         font-family: 'Archivo Black', sans-serif;
     }
 
-  
 
-    .center-right {
-        display: flex;
-        justify-content: flex-end;
-        align-items: center;
-        height: auto; /* Adjust the height as needed */
+    /* Custom indicator color */
+    .carousel-indicators li {
+        background-color: green !important;
     }
-    .carousel {
-        width: 100%;
+    
+    /* Active indicator color */
+    .carousel-indicators .active {
+        background-color: red !important;
     }
 
-    .carousel-inner img {
-        max-height: 70vh;
-        width: 100%; /* Make sure the image fills the carousel's width */
-        object-fit:scale-down; /* Maintain aspect ratio and cover the entire container */
+    .carousel-caption {
+        top: 0;
+    bottom: auto;
+         }
+
+    #about {
         
-      }
+        min-height: 35vh;
+    }
+
+    #services {
+        -webkit-box-shadow: 0 0 30px 10px black;
+        -moz-box-shadow: 0 0 30px 10px black;
+        box-shadow: 0 0 30px 10px black;
+        border-radius: 20px;
+        
+    }
+
+    .label {
+        display: block;
+        text-align: center;
+ 
+    }
+
+    #services a{
+        text-decoration: none;
+        font-family: 'Archivo Black', sans-serif;
+        color: green;
+        font-size: 1.5vw;
+        text-shadow: 0 0 20px black !important;
+    }
+
+
+
+
